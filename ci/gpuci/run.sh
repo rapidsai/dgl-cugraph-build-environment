@@ -18,22 +18,15 @@ env
 gpuci_logger "Logging into Docker..."
 echo $DH_TOKEN | docker login --username $DH_USER --password-stdin &> /dev/null
 
-# Setup BUILD_TAG
-case ${BUILD_NAME} in
-  "dgl_cugraph_build_env")  # doesn't depend on RAPIDS for gpuCI
-    BUILD_TAG="cuda${CUDA_VER}-devel-${LINUX_VER}-py${PYTHON_VER}"
-    ;;
-esac
-
 
 DOCKER_FILE="${BUILD_NAME}.Dockerfile"
 BUILD_IMAGE="gpuci/${BUILD_NAME}"
 
 # Setup BUILD_TAG and BUILD_ARGS
 case ${BUILD_NAME} in
-  "dask_image")  # doesn't depend on RAPIDS / ucx-py for gpuCI
+  "dgl_cugraph_build_env") 
     BUILD_TAG="cuda${CUDA_VER}-devel-${LINUX_VER}-py${PYTHON_VER}"
-    BUILD_ARGS="--squash --build-arg RAPIDS_VER=$RAPIDS_VER --build-arg CUDA_VER=$CUDA_VER --build-arg LINUX_VER=$LINUX_VER --build-arg PYTHON_VER=$PYTHON_VER"
+    BUILD_ARGS="--squash --build-arg RAPIDS_VER=$RAPIDS_VER --build-arg CUDA_VER=$CUDA_VER --build-arg LINUX_VER=$LINUX_VER --build-arg PYTHON_VER=$PYTHON_VER --build-arg PYTORCH_VER=$PYTORCH_VER"
     ;;
 esac
 
