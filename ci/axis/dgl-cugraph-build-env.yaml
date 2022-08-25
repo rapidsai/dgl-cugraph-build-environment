@@ -13,3 +13,5 @@ LINUX_VER:
 RAPIDS_VER:
   - '22.10'
 
+PYTORCH_VER:
+  - '1.11.0'
