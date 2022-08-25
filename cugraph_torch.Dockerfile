@@ -14,24 +14,20 @@ RUN conda install -c gpuci gpuci-tools
 
 RUN gpuci_conda_retry install -c conda-forge mamba
 
-RUN gpuci_mamba_retry create -n cugraph_dgl -y -c rapidsai-nightly -c rapidsai -c pytorch -c nvidia -c conda-forge \
+RUN gpuci_mamba_retry create -n cugraph-torch-ci -y -c rapidsai-nightly -c rapidsai -c pytorch -c nvidia -c conda-forge \
     cudatoolkit=$CUDA_VER \
     cudf=$RAPIDS_VER \
     cugraph=$RAPIDS_VER \
     dask-cudf=$RAPIDS_VER \
     dask-cuda=$RAPIDS_VER \
     pytorch=$PYTORCH_VER \
-    cmake \ 
-    git \ 
     setuptools \ 
     scipy \ 
     networkx \
     requests \
-    tqdm \
-    python-devtools \
-    make
-    
-
+    cmake \
+    make \
+    tqdm
 # Clean up pkgs to reduce image size and chmod for all users
 # RUN chmod -R ugo+w /opt/conda \
 #     && conda clean -tipy \

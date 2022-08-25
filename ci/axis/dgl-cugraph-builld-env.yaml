@@ -1,0 +1,15 @@
+BUILD_NAME:
+  - dgl_cugraph_build_env
+
+CUDA_VER:
+  - '11.5'
+
+PYTHON_VER:
+  - '3.9'
+
+LINUX_VER:
+  - ubuntu18.04
+
+RAPIDS_VER:
+  - '22.10'
+
