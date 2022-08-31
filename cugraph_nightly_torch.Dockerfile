@@ -14,7 +14,7 @@ RUN conda install -c gpuci gpuci-tools
 
 RUN gpuci_conda_retry install -c conda-forge mamba
 
-RUN gpuci_mamba_retry create -n cugraph-torch-ci -y -c rapidsai-nightly -c rapidsai -c pytorch -c nvidia -c conda-forge \
+RUN gpuci_mamba_retry install -y -c rapidsai-nightly -c rapidsai -c pytorch -c nvidia -c conda-forge \
     cudatoolkit=$CUDA_VER \
     cudf=$RAPIDS_VER \
     cugraph=$RAPIDS_VER \
@@ -28,10 +28,7 @@ RUN gpuci_mamba_retry create -n cugraph-torch-ci -y -c rapidsai-nightly -c rapid
     cmake \
     make \
     tqdm
-# Clean up pkgs to reduce image size and chmod for all users
-# RUN chmod -R ugo+w /opt/conda \
-#     && conda clean -tipy \
-#     && chmod -R ugo+w /opt/conda
 
-# ENTRYPOINT [ "/usr/bin/tini", "--" ]
-# CMD [ "/bin/bash" ]
+# RUN cd / && git clone https://github.com/dmlc/dgl.git 
+# RUN cd / && cd dgl && git submodule update --init --recursive
+# RUN cd /dgl && mkdir build && cd build && cmake -DUSE_CUDA=ON .. && make -j64
