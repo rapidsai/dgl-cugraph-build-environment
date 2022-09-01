@@ -38,17 +38,12 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: cugraph_nightly_torch.Dockerfile
-          platforms: >-
-            ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' &&
-            'linux/amd64,linux/arm64' || 'linux/amd64' }}
-          push: '${{ inputs.push }}'
+          file: ./cugraph_nightly_torch.Dockerfile
+          platforms: ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
+          push: ${{ inputs.push }}
           pull: true
           build-args: |
             CUDA_VER=${{ matrix.CUDA_VER }}
             LINUX_VER=${{ matrix.LINUX_VER }}
             PY_VER=${{ matrix.PY_VER }}
-          tags: >-
-            rapidsai/cugraph_nightly_torch-cuda:${{ matrix.CUDA_VER }}-base-${{
-            matrix.LINUX_VER }}-py${{ matrix.PY_VER }}-py${{ matrix.PYTORCH_VER
-            }}-py${{ matrix.RAPIDS_VER }}
+          tags: rapidsai/mambaforge-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}
