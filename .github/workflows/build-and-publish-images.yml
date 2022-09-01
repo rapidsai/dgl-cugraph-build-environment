@@ -40,7 +40,7 @@ jobs:
           context: .
           file: "./cugraph_nightly_torch.Dockerfile"
           platforms: ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
-          push: ${{ inputs.push }}
+          push: true
           pull: true
           build-args: |
             CUDA_VER=${{ matrix.CUDA_VER }}
