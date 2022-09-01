@@ -11,13 +11,13 @@ jobs:
     strategy:
       matrix:
         CUDA_VER:
-          - 11.5.1
+          - "11.5.1"
         PY_VER:
           - '3.9'
         LINUX_VER:
-          - ubuntu18.04
+          - "ubuntu18.04"
         PYTORCH_VER:
-          - 1.11.0
+          - "1.11.0"
         RAPIDS_VER:
           - '22.10'
     steps:
@@ -38,12 +38,14 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./cugraph_nightly_torch.Dockerfile
+          file: "./cugraph_nightly_torch.Dockerfile"
           platforms: ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: ${{ inputs.push }}
           pull: true
           build-args: |
             CUDA_VER=${{ matrix.CUDA_VER }}
             LINUX_VER=${{ matrix.LINUX_VER }}
-            PY_VER=${{ matrix.PY_VER }}
-          tags: rapidsai/mambaforge-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}
+            PYTHON_VER=${{ matrix.PY_VER }}
+            PYTORCH_VER=${{ matrix.PYTORCH_VER }}
+            RAPIDS_VER=${{ matrix.RAPIDS_VER }}
+          tags: rapidsai/cugraph_nightly_torch-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}}-pytorch${{ matrix.PYTORCH_VER }}}-RAPIDS${{ matrix.RAPIDS_VER }}
