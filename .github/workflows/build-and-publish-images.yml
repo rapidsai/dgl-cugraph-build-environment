@@ -1,7 +1,7 @@
 name: Build and publish DGL cugraph CI docker images workflow
 'on':
   schedule:
-    - cron: '10,15,20,30 * * * *'
+    - cron: '05,10,15,20,30,35,40,45,50,55,60 * * * *'
 jobs:
   docker:
     runs-on: ubuntu-latest
