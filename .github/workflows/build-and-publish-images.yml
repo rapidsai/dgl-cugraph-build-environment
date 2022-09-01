@@ -12,6 +12,8 @@ jobs:
       matrix:
         CUDA_VER:
           - "11.5"
+        CUDATOOLKIT_VER:
+          - "11.3"
         PY_VER:
           - '3.9'
         LINUX_VER:
@@ -20,6 +22,7 @@ jobs:
           - "1.11.0"
         RAPIDS_VER:
           - '22.10'
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -44,6 +47,7 @@ jobs:
           pull: true
           build-args: |
             CUDA_VER=${{ matrix.CUDA_VER }}
+            CUDATOOLKIT_VER=${{ matrix.CUDATOOLKIT_VER }}
             LINUX_VER=${{ matrix.LINUX_VER }}
             PYTHON_VER=${{ matrix.PY_VER }}
             PYTORCH_VER=${{ matrix.PYTORCH_VER }}
