@@ -48,4 +48,4 @@ jobs:
             PYTHON_VER=${{ matrix.PY_VER }}
             PYTORCH_VER=${{ matrix.PYTORCH_VER }}
             RAPIDS_VER=${{ matrix.RAPIDS_VER }}
-          tags: rapidsai/cugraph_nightly_torch-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}}-pytorch${{ matrix.PYTORCH_VER }}}-RAPIDS${{ matrix.RAPIDS_VER }}
+          tags: rapidsai/cugraph_nightly_torch-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}-pytorch${{ matrix.PYTORCH_VER }}-RAPIDS${{ matrix.RAPIDS_VER }}
