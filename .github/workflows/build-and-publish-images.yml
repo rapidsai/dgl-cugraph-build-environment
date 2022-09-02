@@ -1,7 +1,7 @@
 name: Build and publish DGL cugraph CI docker images workflow
 'on':
   schedule:
-    - cron: '0,20,40 * * * *'
+    - cron: '0,5,10,15,20,25,30,35,40,45,50,55 * * * *'
 jobs:
   docker:
     runs-on: [self-hosted, linux, amd64, cpu16]
@@ -28,6 +28,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Context for Buildx
+        id: buildx-context
+        run: |
+          docker context create builders
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - if: '${{ env.DOCKERHUB_USERNAME != '''' && env.DOCKERHUB_TOKEN != '''' }}'
