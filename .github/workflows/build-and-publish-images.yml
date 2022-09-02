@@ -4,7 +4,7 @@ name: Build and publish DGL cugraph CI docker images workflow
     - cron: '0,20,40 * * * *'
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, amd64, cpu16]
     env:
       DOCKERHUB_USERNAME: '${{ secrets.GPUCIBOT_DOCKERHUB_USER }}'
       DOCKERHUB_TOKEN: '${{ secrets.GPUCIBOT_DOCKERHUB_TOKEN }}'
@@ -42,7 +42,6 @@ jobs:
         with:
           context: .
           file: "./cugraph_nightly_torch.Dockerfile"
-          runs-on: [self-hosted, linux, amd64, cpu16]
           platforms: ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: true
           pull: true
