@@ -42,6 +42,7 @@ jobs:
         with:
           context: .
           file: "./cugraph_nightly_torch.Dockerfile"
+          runs-on: [self-hosted, linux, amd64, cpu16]
           platforms: ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: true
           pull: true
