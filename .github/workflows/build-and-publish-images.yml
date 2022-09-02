@@ -1,5 +1,8 @@
 name: Build and publish DGL cugraph CI docker images workflow
-'on': [workflow_dispatch]
+on:
+  schedule:
+    - cron: '30 1,12 * * *'
+
 jobs:
   docker:
     runs-on: [self-hosted, linux, amd64, cpu16]
