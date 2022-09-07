@@ -14,7 +14,7 @@ jobs:
         CUDA_VER:
           - "11.5"
         CUDATOOLKIT_VER:
-          - "11.3"
+          - "11.7"
         PY_VER:
           - '3.9'
         LINUX_VER:

@@ -5,7 +5,7 @@ FROM gpuci/miniforge-cuda:$CUDA_VER-devel-$LINUX_VER
 ARG PYTHON_VER=3.9
 ARG RAPIDS_VER=22.10
 ARG PYTORCH_VER=1.11.0
-ARG CUDATOOLKIT_VER=11.3
+ARG CUDATOOLKIT_VER=11.7
 
 RUN conda config --set ssl_verify false
 
@@ -31,4 +31,4 @@ RUN gpuci_mamba_retry install -y -c rapidsai-nightly -c rapidsai -c pytorch -c n
 
 # RUN cd / && git clone https://github.com/dmlc/dgl.git 
 # RUN cd / && cd dgl && git submodule update --init --recursive
-# RUN cd /dgl && mkdir build && cd build && cmake -DUSE_CUDA=ON .. && make -j64
+# RUN cd /dgl && mkdir build && cd build && cmake -DUSE_CUDA=ON -DUSE_NCCL=ON  -DBUILD_CPP_TEST=ON  .. && make -j64
