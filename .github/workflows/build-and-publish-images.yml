@@ -1,7 +1,8 @@
 name: Build and publish DGL cugraph CI docker images workflow
 on: 
-  schedule:
-    - cron: '30 1,12 * * *'
+  - workflow_dispatch:
+  # schedule:
+  #   - cron: '30 1,12 * * *'
 
 jobs:
   docker:
@@ -20,6 +21,7 @@ jobs:
         LINUX_VER:
           - "ubuntu18.04"
         PYTORCH_VER:
+          - "1.11.0"
           - "1.12.0"
         RAPIDS_VER:
           - '22.10'
