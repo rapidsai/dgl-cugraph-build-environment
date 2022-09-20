@@ -4,16 +4,15 @@ FROM gpuci/miniforge-cuda:$CUDA_VER-devel-$LINUX_VER
 
 ARG PYTHON_VER=3.9
 ARG RAPIDS_VER=22.10
-ARG PYTORCH_VER=1.11.0
-ARG CUDATOOLKIT_VER=11.7
+ARG PYTORCH_VER=1.12.0
+ARG CUDATOOLKIT_VER=11.6
 
 RUN conda config --set ssl_verify false
 
 RUN conda install -c gpuci gpuci-tools
 
 RUN gpuci_conda_retry install -c conda-forge mamba
-
-RUN gpuci_mamba_retry install -y -c rapidsai-nightly -c rapidsai -c pytorch -c nvidia -c conda-forge \
+RUN gpuci_mamba_retry install -y -c pytorch -c rapidsai-nightly -c rapidsai -c nvidia -c conda-forge \
     cudatoolkit=$CUDATOOLKIT_VER \
     cudf=$RAPIDS_VER \
     cugraph=$RAPIDS_VER \
