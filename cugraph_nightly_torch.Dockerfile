@@ -18,16 +18,17 @@ RUN gpuci_mamba_retry install -y -c pytorch -c rapidsai-nightly -c rapidsai -c n
     cugraph=$RAPIDS_VER \
     dask-cudf=$RAPIDS_VER \
     dask-cuda=$RAPIDS_VER \
+    pylibcugraphops=$RAPIDS_VER \
     pytorch=$PYTORCH_VER \
     python=$PYTHON_VER \
-    setuptools \ 
-    scipy \ 
+    setuptools \
+    scipy \
     networkx \
     requests \
     cmake \
     make \
     tqdm
 
-# RUN cd / && git clone https://github.com/dmlc/dgl.git 
+# RUN cd / && git clone https://github.com/dmlc/dgl.git
 # RUN cd / && cd dgl && git submodule update --init --recursive
 # RUN cd /dgl && mkdir build && cd build && cmake -DUSE_CUDA=ON -DUSE_NCCL=ON  -DBUILD_CPP_TEST=ON  .. && make -j64
