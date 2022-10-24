@@ -18,7 +18,7 @@ RUN gpuci_mamba_retry install -y -c pytorch -c rapidsai-nightly -c rapidsai -c n
     cugraph=$RAPIDS_VER \
     dask-cudf=$RAPIDS_VER \
     dask-cuda=$RAPIDS_VER \
-    pylibcugraphops=$RAPIDS_VER \
+    pylibcugraphops=22.10 \
     pytorch=$PYTORCH_VER \
     python=$PYTHON_VER \
     setuptools \
