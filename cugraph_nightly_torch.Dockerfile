@@ -1,11 +1,11 @@
-ARG CUDA_VER=11.5
-ARG LINUX_VER=ubuntu18.04
+ARG CUDA_VER=11.8
+ARG LINUX_VER=ubuntu20.04
 FROM gpuci/miniforge-cuda:$CUDA_VER-devel-$LINUX_VER
 
-ARG PYTHON_VER=3.9
-ARG RAPIDS_VER=22.12
-ARG PYTORCH_VER=1.12.0
-ARG CUDATOOLKIT_VER=11.6
+ARG PYTHON_VER=3.10
+ARG RAPIDS_VER=23.04
+ARG PYTORCH_VER=2.0.0
+ARG CUDATOOLKIT_VER=11.8
 
 RUN conda config --set ssl_verify false
 
@@ -13,13 +13,13 @@ RUN conda install -c gpuci gpuci-tools
 
 RUN gpuci_conda_retry install -c conda-forge mamba
 RUN gpuci_mamba_retry install -y -c pytorch -c rapidsai-nightly -c rapidsai -c conda-forge -c nvidia \
-    cudatoolkit=$CUDATOOLKIT_VER \
     cudf=$RAPIDS_VER \
     cugraph=$RAPIDS_VER \
     dask-cudf=$RAPIDS_VER \
     dask-cuda=$RAPIDS_VER \
     pylibcugraphops=$RAPIDS_VER \
     pytorch=$PYTORCH_VER \
+    pytorch-cuda=$CUDATOOLKIT_VER \
     python=$PYTHON_VER \
     setuptools \
     scipy \
