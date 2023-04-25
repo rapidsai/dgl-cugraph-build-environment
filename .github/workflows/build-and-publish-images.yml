@@ -1,5 +1,5 @@
 name: Build and publish DGL cugraph CI docker images workflow
-on: 
+on:
   workflow_dispatch:
   # schedule:
   #   - cron: '30 1,12 * * *'
@@ -13,17 +13,17 @@ jobs:
     strategy:
       matrix:
         CUDA_VER:
-          - "11.5"
+          - "11.8"
         CUDATOOLKIT_VER:
-          - "11.6"
+          - "11.8"
         PY_VER:
-          - '3.9'
+          - '3.10'
         LINUX_VER:
-          - "ubuntu18.04"
+          - "ubuntu20.04"
         PYTORCH_VER:
-          - "1.12.0"
+          - "2.0.0"
         RAPIDS_VER:
-          - '22.12'
+          - '23.04'
 
     steps:
       - name: Checkout
