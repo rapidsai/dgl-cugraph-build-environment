@@ -12,7 +12,7 @@ RUN conda config --set ssl_verify false
 RUN conda install -c gpuci gpuci-tools
 
 RUN gpuci_conda_retry install -c conda-forge mamba
-RUN gpuci_mamba_retry install -y -c pytorch  -c rapidsai -c conda-forge -c nvidia \
+RUN gpuci_mamba_retry install -y -c pytorch -c rapidsai -c conda-forge -c nvidia \
     cudf=$RAPIDS_VER \
     cugraph=$RAPIDS_VER \
     dask-cudf=$RAPIDS_VER \
