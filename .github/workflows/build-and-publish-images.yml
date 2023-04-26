@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: "./cugraph_nightly_torch.Dockerfile"
+          file: "./cugraph_stable_torch.Dockerfile"
           platforms: ${{ matrix.CUDA_VER >= '11.2.2' && matrix.LINUX_VER != 'centos7' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: true
           pull: true
@@ -61,4 +61,4 @@ jobs:
             PYTHON_VER=${{ matrix.PY_VER }}
             PYTORCH_VER=${{ matrix.PYTORCH_VER }}
             RAPIDS_VER=${{ matrix.RAPIDS_VER }}
-          tags: rapidsai/cugraph_nightly_torch-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}-pytorch${{ matrix.PYTORCH_VER }}-rapids${{ matrix.RAPIDS_VER }}
+          tags: rapidsai/cugraph_stable_torch-cuda:${{ matrix.CUDA_VER }}-base-${{ matrix.LINUX_VER }}-py${{ matrix.PY_VER }}-pytorch${{ matrix.PYTORCH_VER }}-rapids${{ matrix.RAPIDS_VER }}
